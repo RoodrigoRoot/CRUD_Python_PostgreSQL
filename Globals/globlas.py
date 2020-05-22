@@ -1,0 +1,5 @@
+USER_DB = ""
+PASSWD_DB = ""
+DB = ""
+SERVER = ""
+INIT_FILE = "init.json"
