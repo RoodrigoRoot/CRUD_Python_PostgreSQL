@@ -8,7 +8,6 @@ import logging
 import hashlib
 
 
-
 logging.basicConfig(
     level=logging.DEBUG
 )

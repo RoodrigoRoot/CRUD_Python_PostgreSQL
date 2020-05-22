@@ -15,19 +15,23 @@ def connection_db(db, user_db, passwd_db, server):
         print(e)
 
 
-def login(con):
-    cur = con.cursor()
-    user = input("Usuario> ")
-    passwd = getpass("Contraseña> ")
-    hash_object = hashlib.md5(passwd.encode())
-    passwd_md5 = hash_object.hexdigest()
-    sql = "SELECT * FROM users WHERE name='{}' AND password='{}'".format(user, passwd_md5)
-    cur.execute(sql)
-    us = cur.fetchone()
-    if us is not None:
-        print("Bienvenido {}".format(us[2]))
-        return True
-    return False
+def login(con, user, passwd):
+    try:
+        cur = con.cursor()
+        print(user)
+        print(passwd)
+        hash_object = hashlib.md5(passwd.encode())
+        passwd_md5 = hash_object.hexdigest()
+        sql = "SELECT * FROM users WHERE name='{}' AND password='{}'".format(user, passwd_md5)
+        print(sql)
+        cur.execute(sql)
+        us = cur.fetchone()
+        if us is not None:
+            print("Bienvenido {}".format(us[2]))
+            return True
+        return False
+    except Exception as e:
+        print(e)
     
 def close_db(con):
     con.close()
